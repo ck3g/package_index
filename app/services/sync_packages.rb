@@ -24,11 +24,15 @@ class SyncPackages
     details = PackageParser::Package.new(pkg["Package"], pkg["Version"]).details
 
     Package.find_or_create_by(attrs) do |package|
-      package.published_at = DateTime.parse(details["Date/Publication"])
+      package.published_at = published_at(details)
       package.title = details["Title"]
       package.description = details["Description"]
       package.authors = details["Author"]
       package.maintainers = details["Maintainer"]
     end
+  end
+
+  def published_at(details)
+    DateTime.parse(details["Date/Publication"]) rescue nil
   end
 end

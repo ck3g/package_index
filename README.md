@@ -10,3 +10,4 @@
   * Cache test results (for example using VCR) to avoid hit remote server each time.
   * Extract Packages Parser into a gem
   * Extract Authors and Maintainers into separate table with splitted name and email
+  * Add search by for searching for available packages

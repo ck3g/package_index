@@ -5,6 +5,11 @@ RSpec.describe Package, type: :model do
     expect(create :package).to be_valid
   end
 
+  describe ".associations" do
+    it { is_expected.to have_many(:package_maintainers).dependent(:destroy) }
+    it { is_expected.to have_many(:p_maintainers) }
+  end
+
   describe '.validations' do
     context "when valid" do
       subject { create :package }

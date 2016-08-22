@@ -11,6 +11,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 
+gem "treetop-dcf"
+
 group :development, :test do
   gem "pry-rails", "~> 0.3.4"
   gem "rspec-rails", "~> 3.5.1"

@@ -1,35 +1,9 @@
-require 'pry'
+require 'package_parser/package'
 
-require 'net/http'
-require 'uri'
-
-require 'dcf'
-
-class Package
-  REPOSITOTY_DIR = "https://cran.r-project.org/src/contrib/".freeze
-  PACKAGES_URI = "#{REPOSITOTY_DIR}PACKAGES".freeze
-  FILE_EXT = "tar.gz".freeze
-
-  def self.urls(limit = 50)
-    list(limit).map do |pkg|
-      "#{REPOSITOTY_DIR}#{pkg["Package"]}_#{pkg["Version"]}.#{FILE_EXT}"
-    end
-  end
-
-  def self.list(limit = 50)
-    response = Net::HTTP.get URI(PACKAGES_URI)
-    response.split("\n\n").lazy.take(limit).to_a.map do |pkg|
-      Dcf.parse(pkg).first
-    end
-  end
-end
-
-
-
-RSpec.describe Package do
+RSpec.describe PackageParser::Package do
   describe ".list" do
     it "returns list of package urls" do
-      expect(Package.urls(2)).to eq [
+      expect(described_class.urls(2)).to eq [
         "https://cran.r-project.org/src/contrib/A3_1.0.0.tar.gz",
         "https://cran.r-project.org/src/contrib/abbyyR_0.5.0.tar.gz"
       ]
@@ -38,7 +12,7 @@ RSpec.describe Package do
 
   describe ".packages" do
     it "fetches the list of the packages" do
-      expect(Package.list(2)).to eq [
+      expect(described_class.list(2)).to eq [
         {
           "Package" => "A3",
           "Version" => "1.0.0",

@@ -2,8 +2,10 @@ require 'package_parser'
 
 RSpec.describe PackageParser::Package do
   describe ".list" do
+    subject { described_class.urls(2) }
+
     it "returns list of package urls" do
-      expect(described_class.urls(2)).to eq [
+      is_expected.to eq [
         "https://cran.r-project.org/src/contrib/A3_1.0.0.tar.gz",
         "https://cran.r-project.org/src/contrib/abbyyR_0.5.0.tar.gz"
       ]
@@ -11,8 +13,10 @@ RSpec.describe PackageParser::Package do
   end
 
   describe ".list" do
+    subject { described_class.list(2) }
+
     it "fetches the list of the packages" do
-      expect(described_class.list(2)).to eq [
+      is_expected.to eq [
         {
           "Package" => "A3",
           "Version" => "1.0.0",

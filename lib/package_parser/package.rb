@@ -5,9 +5,14 @@ require 'dcf'
 
 module PackageParser
   class Package
+    def initialize(package, version)
+      @package = package
+      @version = version
+    end
+
     def self.urls(limit = 50)
       list(limit).map do |pkg|
-        "#{REPOSITOTY_DIR}#{pkg["Package"]}_#{pkg["Version"]}.#{FILE_EXT}"
+        new(pkg["Package"], pkg["Version"]).url
       end
     end
 
@@ -17,5 +22,13 @@ module PackageParser
         Dcf.parse(pkg).first
       end
     end
+
+    def url
+      "#{REPOSITOTY_DIR}#{package}_#{version}.#{FILE_EXT}"
+    end
+
+    private
+
+    attr_reader :package, :version
   end
 end

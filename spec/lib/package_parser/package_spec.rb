@@ -37,4 +37,45 @@ RSpec.describe PackageParser::Package do
       ]
     end
   end
+
+  describe "#details" do
+    subject do
+      described_class.new(package, version).details
+    end
+
+    context "when fetch is not successfull" do
+      let(:package) { "ACA" }
+      let(:version) { "1.0" }
+
+      it "returns no details" do
+        is_expected.to eq({})
+      end
+    end
+
+    context "when fetch is successfull" do
+      let(:package) { "A3" }
+      let(:version) { "1.0.0" }
+
+      it "fetches all the information about the package" do
+        is_expected.to eq(
+          "Package" => "A3",
+          "Version" => "1.0.0",
+          "Depends" => "R (>= 2.15.0), xtable, pbapply",
+          "Author" => "Scott Fortmann-Roe",
+          "Date" => "2015-08-15",
+          "Date/Publication" => "2015-08-16 23:05:52",
+          "Depends" => "R (>= 2.15.0), xtable, pbapply",
+          "Description" => "Supplies tools for tabulating and analyzing the results of predictive models. The methods employed are applicable to virtually any predictive model and make comparisons between different methodologies straightforward.",
+          "License" => "GPL (>= 2)",
+          "Maintainer" => "Scott Fortmann-Roe <scottfr@berkeley.edu>",
+          "NeedsCompilation" => "no",
+          "Packaged" => "2015-08-16 14:17:33 UTC; scott",
+          "Repository" => "CRAN",
+          "Suggests" => "randomForest, e1071",
+          "Title" => "Accurate, Adaptable, and Accessible Error Metrics for Predictive Models",
+          "Type" => "Package",
+        )
+      end
+    end
+  end
 end

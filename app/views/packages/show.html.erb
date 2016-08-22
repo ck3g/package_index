@@ -1,0 +1,32 @@
+<h1>Package Details</h1>
+
+<table>
+  <tr>
+    <th>Package Name:</th>
+    <td><%= @package.name %></td>
+  </tr>
+  <tr>
+    <th>Version:</th>
+    <td><%= @package.version %></td>
+  </tr>
+  <tr>
+    <th>Date/Publication:</th>
+    <td><%= @package.published_at.to_s %></td>
+  </tr>
+  <tr>
+    <th>Title:</th>
+    <td><%= @package.title %></td>
+  </tr>
+  <tr>
+    <th>Description:</th>
+    <td><%= @package.description %></td>
+  </tr>
+  <tr>
+    <th>Authors:</th>
+    <td><%= @package.authors %></td>
+  </tr>
+  <tr>
+    <th>Maintainers:</th>
+    <td><%= @package.maintainers %></td>
+  </tr>
+</table>

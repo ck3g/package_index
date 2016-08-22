@@ -2,6 +2,9 @@
 
 <ul>
   <%- @packages.each do |package| %>
-    <li><%= link_to "#{package.name} #{package.version}", package.url %></li>
+    <li id="<%= dom_id(package) %>">
+      <%= link_to "#{package.name} #{package.version}", package.url %>
+      | <%= link_to "Details", package %>
+    </li>
   <% end %>
 </ul>

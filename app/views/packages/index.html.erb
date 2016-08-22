@@ -1,0 +1,7 @@
+<h1>Available Packages</h1>
+
+<ul>
+  <%- @packages.each do |package| %>
+    <li><%= link_to "#{package.name} #{package.version}", package.url %></li>
+  <% end %>
+</ul>

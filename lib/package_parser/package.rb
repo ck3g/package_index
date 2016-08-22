@@ -5,10 +5,6 @@ require 'dcf'
 
 module PackageParser
   class Package
-    REPOSITOTY_DIR = "https://cran.r-project.org/src/contrib/".freeze
-    PACKAGES_URI = "#{REPOSITOTY_DIR}PACKAGES".freeze
-    FILE_EXT = "tar.gz".freeze
-
     def self.urls(limit = 50)
       list(limit).map do |pkg|
         "#{REPOSITOTY_DIR}#{pkg["Package"]}_#{pkg["Version"]}.#{FILE_EXT}"

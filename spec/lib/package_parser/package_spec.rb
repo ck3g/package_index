@@ -1,4 +1,4 @@
-require 'package_parser/package'
+require 'package_parser'
 
 RSpec.describe PackageParser::Package do
   describe ".list" do
@@ -10,7 +10,7 @@ RSpec.describe PackageParser::Package do
     end
   end
 
-  describe ".packages" do
+  describe ".list" do
     it "fetches the list of the packages" do
       expect(described_class.list(2)).to eq [
         {

@@ -6,5 +6,7 @@
 
 ## Improvements:
 
-  * Extract Packages Parser into a gem
+  * Use [Whenever gem](https://github.com/javan/whenever) to sync every N hours.
   * Cache test results (for example using VCR) to avoid hit remote server each time.
+  * Extract Packages Parser into a gem
+  * Extract Authors and Maintainers into separate table with splitted name and email
